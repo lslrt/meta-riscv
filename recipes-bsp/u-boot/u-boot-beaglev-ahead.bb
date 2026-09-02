@@ -1,6 +1,8 @@
 require recipes-bsp/u-boot/u-boot-common.inc
 require recipes-bsp/u-boot/u-boot.inc
 
+inherit fastbootpkg_component
+
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=30503fd321432fc713238f582193b78e"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
@@ -40,6 +42,8 @@ do_deploy() {
     install -m 644 ${B}/u-boot-with-spl.bin ${DEPLOYDIR}
     install -m 644 ${UNPACKDIR}/uEnv.txt ${DEPLOYDIR}/uEnv.txt
 }
+
+FASTBOOTPKG_COMPONENTS = "${DEPLOYDIR}/u-boot-with-spl.bin"
 
 TOOLCHAIN = "gcc"
 COMPATIBLE_MACHINE = "(beaglev-ahead)"

@@ -6,7 +6,7 @@ SUMMARY = "Beagle-V Ahead dev kernel recipe"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 KERNEL_VERSION_SANITY_SKIP = "1"
 
-inherit deploy
+inherit deploy fastbootpkg_component
 
 # Linux 6.19.9
 SRCREV = "4a2b0ed2ac7abe9743e1559d212075a0ebac96b3"
@@ -61,3 +61,5 @@ do_deploy:append() {
 
 addtask deploy after do_compile before do_build
 do_deploy[depends] += "opensbi:do_deploy"
+
+FASTBOOTPKG_COMPONENTS = "${DEPLOYDIR}/boot.ext4.simg"
